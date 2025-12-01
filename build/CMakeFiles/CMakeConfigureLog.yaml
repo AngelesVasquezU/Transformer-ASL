@@ -1044,3 +1044,88 @@ events:
         8.9 
       exitCode: 0
 ...
+
+---
+events:
+  -
+    kind: "try_run-v1"
+    backtrace:
+      - "/home/daniela/Descargas/libtorch-shared-with-deps-2.9.1+cu130/libtorch/share/cmake/Caffe2/public/cuda.cmake:99 (try_run)"
+      - "/home/daniela/Descargas/libtorch-shared-with-deps-2.9.1+cu130/libtorch/share/cmake/Caffe2/Caffe2Config.cmake:86 (include)"
+      - "/home/daniela/Descargas/libtorch-shared-with-deps-2.9.1+cu130/libtorch/share/cmake/Torch/TorchConfig.cmake:68 (find_package)"
+      - "CMakeLists.txt:9 (find_package)"
+    directories:
+      source: "/home/daniela/ProyectoIA/Transformer-ASL/build/CMakeFiles/CMakeTmp"
+      binary: "/home/daniela/ProyectoIA/Transformer-ASL/build/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CUDA_ARCHITECTURES: "75"
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/daniela/Descargas/libtorch-shared-with-deps-2.9.1+cu130/libtorch/share/cmake/Caffe2;/home/daniela/Descargas/libtorch-shared-with-deps-2.9.1+cu130/libtorch/share/cmake/Caffe2/public/../Modules_CUDA_fix"
+    buildResult:
+      variable: "compile_result"
+      cached: true
+      stdout: |
+        Change Dir: '/home/daniela/ProyectoIA/Transformer-ASL/build/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_88be1/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_88be1.dir/build.make CMakeFiles/cmTC_88be1.dir/build
+        gmake[1]: se entra en el directorio '/home/daniela/ProyectoIA/Transformer-ASL/build/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_88be1.dir/detect_cuda_version.cc.o
+        /usr/bin/c++  -I/usr/local/cuda/include -std=gnu++17 -o CMakeFiles/cmTC_88be1.dir/detect_cuda_version.cc.o -c /home/daniela/ProyectoIA/Transformer-ASL/build/detect_cuda_version.cc
+        Linking CXX executable cmTC_88be1
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_88be1.dir/link.txt --verbose=1
+        /usr/bin/c++ CMakeFiles/cmTC_88be1.dir/detect_cuda_version.cc.o -o cmTC_88be1  -Wl,-rpath,/usr/local/cuda/lib64 /usr/local/cuda/lib64/libcudart.so 
+        gmake[1]: se sale del directorio '/home/daniela/ProyectoIA/Transformer-ASL/build/CMakeFiles/CMakeTmp'
+        
+      exitCode: 0
+    runResult:
+      variable: "run_result"
+      cached: true
+      stdout: |
+        13.0
+      exitCode: 0
+  -
+    kind: "try_run-v1"
+    backtrace:
+      - "/home/daniela/Descargas/libtorch-shared-with-deps-2.9.1+cu130/libtorch/share/cmake/Caffe2/Modules_CUDA_fix/upstream/FindCUDA/select_compute_arch.cmake:128 (try_run)"
+      - "/home/daniela/Descargas/libtorch-shared-with-deps-2.9.1+cu130/libtorch/share/cmake/Caffe2/Modules_CUDA_fix/upstream/FindCUDA/select_compute_arch.cmake:188 (CUDA_DETECT_INSTALLED_GPUS)"
+      - "/home/daniela/Descargas/libtorch-shared-with-deps-2.9.1+cu130/libtorch/share/cmake/Caffe2/public/utils.cmake:331 (cuda_select_nvcc_arch_flags)"
+      - "/home/daniela/Descargas/libtorch-shared-with-deps-2.9.1+cu130/libtorch/share/cmake/Caffe2/public/cuda.cmake:320 (torch_cuda_get_nvcc_gencode_flag)"
+      - "/home/daniela/Descargas/libtorch-shared-with-deps-2.9.1+cu130/libtorch/share/cmake/Caffe2/Caffe2Config.cmake:86 (include)"
+      - "/home/daniela/Descargas/libtorch-shared-with-deps-2.9.1+cu130/libtorch/share/cmake/Torch/TorchConfig.cmake:68 (find_package)"
+      - "CMakeLists.txt:9 (find_package)"
+    directories:
+      source: "/home/daniela/ProyectoIA/Transformer-ASL/build/CMakeFiles/CMakeTmp"
+      binary: "/home/daniela/ProyectoIA/Transformer-ASL/build/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CUDA_ARCHITECTURES: "75"
+      CMAKE_CUDA_FLAGS: ""
+      CMAKE_CUDA_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/daniela/Descargas/libtorch-shared-with-deps-2.9.1+cu130/libtorch/share/cmake/Caffe2;/home/daniela/Descargas/libtorch-shared-with-deps-2.9.1+cu130/libtorch/share/cmake/Caffe2/public/../Modules_CUDA_fix"
+    buildResult:
+      variable: "compile_result"
+      cached: true
+      stdout: |
+        Change Dir: '/home/daniela/ProyectoIA/Transformer-ASL/build/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_8d5c3/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_8d5c3.dir/build.make CMakeFiles/cmTC_8d5c3.dir/build
+        gmake[1]: se entra en el directorio '/home/daniela/ProyectoIA/Transformer-ASL/build/CMakeFiles/CMakeTmp'
+        Building CUDA object CMakeFiles/cmTC_8d5c3.dir/detect_cuda_compute_capabilities.cu.o
+        /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler   -std=c++17 "--generate-code=arch=compute_75,code=[compute_75,sm_75]" -MD -MT CMakeFiles/cmTC_8d5c3.dir/detect_cuda_compute_capabilities.cu.o -MF CMakeFiles/cmTC_8d5c3.dir/detect_cuda_compute_capabilities.cu.o.d -x cu -c /home/daniela/ProyectoIA/Transformer-ASL/build/detect_cuda_compute_capabilities.cu -o CMakeFiles/cmTC_8d5c3.dir/detect_cuda_compute_capabilities.cu.o
+        Linking CUDA executable cmTC_8d5c3
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8d5c3.dir/link.txt --verbose=1
+        /usr/bin/g++ @CMakeFiles/cmTC_8d5c3.dir/objects1.rsp -o cmTC_8d5c3 @CMakeFiles/cmTC_8d5c3.dir/linkLibs.rsp -L"/usr/local/cuda/targets/x86_64-linux/lib/stubs" -L"/usr/local/cuda/targets/x86_64-linux/lib"
+        gmake[1]: se sale del directorio '/home/daniela/ProyectoIA/Transformer-ASL/build/CMakeFiles/CMakeTmp'
+        
+      exitCode: 0
+    runResult:
+      variable: "run_result"
+      cached: true
+      stdout: |
+        8.9 
+      exitCode: 0
+...
