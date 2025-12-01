@@ -8,7 +8,7 @@ int main()
 {
     torch::Device device(torch::kCUDA);
 
-    std::string dataset_root = "./asl_alphabet_train"; // aquí extrajiste el dataset
+    std::string dataset_root = "./asl_alphabet_train";
 
     int img_size = 64;
     int patch_size = 8;
@@ -27,12 +27,12 @@ int main()
 
     // Dataset
     auto dataset = ASLDataset(dataset_root, img_size)
-                       .map(torch::data::transforms::ShuffleDataset(/*buffer_size=*/5000))
-                       .map(torch::data::transforms::Batch(batch_size))
                        .map(torch::data::transforms::Stack<>());
 
+    // BatchDataset + shuffle (compatible con LibTorch 2.x)
     auto dataloader = torch::data::make_data_loader(
-        std::move(dataset), torch::data::DataLoaderOptions().workers(4));
+        torch::data::datasets::BatchDataset(dataset, batch_size).shuffle(5000),
+        torch::data::DataLoaderOptions().workers(4));
 
     torch::optim::Adam optimizer(
         model->parameters(),
@@ -40,12 +40,34 @@ int main()
 
     std::cout << "Entrenando ViT en lenguaje de señas (A–E)...\n";
 
-    for (int epoch = 1; epoch <= epochs; epoch++)
+    for (int epoch = 1; epoch <= epochs; ++epoch)
     {
         int batch_idx = 0;
+
         for (auto &batch : *dataloader)
         {
             auto images = batch.data.to(device);
             auto labels = batch.target.to(device);
 
-            auto logits =
+            auto logits = model->forward(images);
+            auto loss = torch::nn::functional::cross_entropy(logits, labels);
+
+            optimizer.zero_grad();
+            loss.backward();
+            optimizer.step();
+
+            if (batch_idx % 10 == 0)
+            {
+                std::cout << "Epoch " << epoch
+                          << " Batch " << batch_idx
+                          << " Loss: " << loss.item<float>()
+                          << std::endl;
+            }
+
+            batch_idx++;
+        }
+    }
+
+    std::cout << "Entrenamiento terminado.\n";
+    return 0;
+}
