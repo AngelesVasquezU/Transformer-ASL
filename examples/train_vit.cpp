@@ -28,7 +28,7 @@ int main()
     try
     {
         torch::serialize::InputArchive archive;
-        archive.load_from("vit_asl.pt"); // si no existe, lanza excepción
+        archive.load_from("../vit_asl.pt"); // si no existe, lanza excepción
         model->load(archive);
         std::cout << "Pesos previos cargados desde vit_asl.pt, continuando entrenamiento...\n";
     }
