@@ -22,13 +22,27 @@ int main()
 
     auto model = transformer::VisionTransformer(
         img_size, patch_size, d_model,
-        n_heads, mlp_dim, num_layers, num_classes
-    );
+        n_heads, mlp_dim, num_layers, num_classes);
+
+    // Intentar cargar pesos previos (si existen)
+    try
+    {
+        torch::serialize::InputArchive archive;
+        archive.load_from("vit_asl.pt"); // si no existe, lanza excepción
+        model->load(archive);
+        std::cout << "Pesos previos cargados desde vit_asl.pt, continuando entrenamiento...\n";
+    }
+    catch (const c10::Error &e)
+    {
+        std::cout << "No se encontraron pesos previos, entrenando desde cero.\n";
+    }
+
+    // AHORA sí mandamos el modelo a la GPU
     model->to(device);
 
     // Dataset base (cada elemento: Example<tensor imagen, label>)
     auto dataset = ASLDataset(dataset_root, img_size)
-        .map(torch::data::transforms::Stack<>());
+                       .map(torch::data::transforms::Stack<>());
 
     // DataLoader SIMPLE, sin shuffle
     torch::data::DataLoaderOptions options(batch_size);
@@ -36,15 +50,13 @@ int main()
 
     auto dataloader = torch::data::make_data_loader(
         std::move(dataset),
-        options
-    );
+        options);
 
     torch::optim::Adam optimizer(
         model->parameters(),
-        torch::optim::AdamOptions(1e-4)
-    );
+        torch::optim::AdamOptions(1e-4));
 
-    std::cout << "Entrenando ViT en lenguaje de señas (A–E)...\n";
+    std::cout << "Entrenando ViT en lenguaje de señas (A, E, I, O, U)...\n";
 
     for (int epoch = 1; epoch <= epochs; ++epoch)
     {
@@ -52,7 +64,7 @@ int main()
         long total_correct = 0;
         long total_samples = 0;
 
-        for (auto& batch : *dataloader)
+        for (auto &batch : *dataloader)
         {
             auto images = batch.data.to(device);
             auto labels = batch.target.to(device);
@@ -88,12 +100,15 @@ int main()
     std::cout << "Entrenamiento terminado.\n";
 
     // ====== GUARDAR MODELO MANUALMENTE ======
-    try {
+    try
+    {
         torch::serialize::OutputArchive archive;
-        model->save(archive);                      // guarda weights al archive
-        archive.save_to("vit_asl.pt");             // escribe archivo en disco
+        model->save(archive);          // guarda weights al archive
+        archive.save_to("vit_asl.pt"); // escribe archivo en disco
         std::cout << "Modelo guardado como vit_asl.pt\n";
-    } catch (const c10::Error& e) {
+    }
+    catch (const c10::Error &e)
+    {
         std::cerr << "Error guardando el modelo: " << e.what() << std::endl;
     }
 
