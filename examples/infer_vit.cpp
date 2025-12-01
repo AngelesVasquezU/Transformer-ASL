@@ -69,7 +69,7 @@ int main(int argc, char **argv)
     auto logits = model->forward(input);
     auto pred = logits.argmax(1).item<int64_t>();
 
-    std::array<char, 5> classes = {'A', 'B', 'C', 'D', 'E'};
+    std::array<char, 5> classes = {'A', 'E', 'I', 'O', 'U'};
     if (pred >= 0 && pred < (int)classes.size())
     {
         std::cout << "Prediccion: " << classes[pred] << std::endl;
