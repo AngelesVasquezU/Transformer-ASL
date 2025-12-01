@@ -1,2 +1,0 @@
-/usr/bin/ar qc libvit_transformer.a CMakeFiles/vit_transformer.dir/src/encoder_block.cpp.o CMakeFiles/vit_transformer.dir/src/patch_embedding.cpp.o CMakeFiles/vit_transformer.dir/src/utils.cpp.o CMakeFiles/vit_transformer.dir/src/vit.cpp.o
-/usr/bin/ranlib libvit_transformer.a

@@ -1,4 +1,0 @@
-/home/daniela/ProyectoIA/Transformer-ASL/build/CMakeFiles/vit_transformer.dir
-/home/daniela/ProyectoIA/Transformer-ASL/build/CMakeFiles/train_vit.dir
-/home/daniela/ProyectoIA/Transformer-ASL/build/CMakeFiles/edit_cache.dir
-/home/daniela/ProyectoIA/Transformer-ASL/build/CMakeFiles/rebuild_cache.dir
