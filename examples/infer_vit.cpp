@@ -54,7 +54,7 @@ int main(int argc, char **argv)
     try
     {
         torch::serialize::InputArchive archive;
-        archive.load_from("vit_asl.pt");
+        archive.load_from("../vit_asl.pt");
         model->load(archive);
         std::cout << "Modelo cargado desde vit_asl.pt\n";
     }

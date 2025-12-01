@@ -103,8 +103,8 @@ int main()
     try
     {
         torch::serialize::OutputArchive archive;
-        model->save(archive);          // guarda weights al archive
-        archive.save_to("vit_asl.pt"); // escribe archivo en disco
+        model->save(archive);             // guarda weights al archive
+        archive.save_to("../vit_asl.pt"); // escribe archivo en disco
         std::cout << "Modelo guardado como vit_asl.pt\n";
     }
     catch (const c10::Error &e)
