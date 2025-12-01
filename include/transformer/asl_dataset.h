@@ -16,7 +16,7 @@ struct ASLDataset : torch::data::Dataset<ASLDataset>
     {
 
         // SOLO 5 CLASES
-        std::vector<std::string> classes = {"A", "B", "C", "D", "E"};
+        std::vector<std::string> classes = {"A", "E", "I", "O", "U"};
 
         for (int i = 0; i < classes.size(); i++)
         {

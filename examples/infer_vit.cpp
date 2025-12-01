@@ -51,11 +51,10 @@ int main(int argc, char **argv)
     model->to(device);
     model->eval();
 
-    // ====== CARGAR MODELO ======
     try
     {
         torch::serialize::InputArchive archive;
-        archive.load_from("vit_asl.pt"); // busca en el mismo directorio
+        archive.load_from("vit_asl.pt");
         model->load(archive);
         std::cout << "Modelo cargado desde vit_asl.pt\n";
     }
