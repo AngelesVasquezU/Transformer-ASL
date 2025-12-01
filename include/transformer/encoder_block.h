@@ -17,7 +17,6 @@ namespace transformer
 
         EncoderBlockImpl(int d_model, int n_heads, int mlp_dim);
 
-        // x: [B, N, D]
         torch::Tensor forward(const torch::Tensor &x);
     };
 
