@@ -44,7 +44,7 @@ int main()
         torch::optim::AdamOptions(1e-4)
     );
 
-    std::cout << "Entrenando ViT en lenguaje de señas (A–E)...\n";
+    std::cout << "Entrenando ViT en lenguaje de señas (A–U)...\n";
 
     for (int epoch = 1; epoch <= epochs; ++epoch)
     {
