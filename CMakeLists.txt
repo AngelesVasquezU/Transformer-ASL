@@ -30,6 +30,10 @@ target_link_libraries(vit_transformer ${TORCH_LIBRARIES} ${OpenCV_LIBS})
 add_executable(train_vit examples/train_vit.cpp)
 target_link_libraries(train_vit vit_transformer ${TORCH_LIBRARIES} ${OpenCV_LIBS})
 
+add_executable(infer_vit examples/infer_vit.cpp)
+target_link_libraries(infer_vit vit_transformer ${TORCH_LIBRARIES} ${OpenCV_LIBS})
+set_property(TARGET infer_vit PROPERTY RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
+
 # Para que encuentre las .so de libtorch al ejecutar
 set_property(TARGET vit_transformer PROPERTY RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
 set_property(TARGET train_vit PROPERTY RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
