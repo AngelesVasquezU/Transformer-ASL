@@ -3,7 +3,6 @@
 #include <vector>
 #include "transformer/patch_embedding.h"
 #include "transformer/encoder_block.h"
-#include "transformer/utils.h"
 
 namespace transformer
 {
